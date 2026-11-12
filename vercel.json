@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/:n(2|3|4|5|6)", "destination": "/practical:n.ipynb" }
+  ],
+  "headers": [
+    {
+      "source": "/:n(2|3|4|5|6)",
+      "headers": [
+        { "key": "Content-Type", "value": "application/octet-stream" },
+        { "key": "Content-Disposition", "value": "attachment" }
+      ]
+    }
+  ]
+}
