@@ -1,0 +1,47 @@
+PRACTICAL NO. 6: FILE PERMISSIONS AND OWNERSHIP MANAGEMENT IN LINUX
+
+AIM
+To study file permissions, ownership, and access-control management in the Kali Linux environment.
+
+REQUIREMENTS
+1. Computer or laptop.
+2. Kali Linux operating system.
+3. Terminal application.
+4. Test user or group for ownership demonstrations, if available.
+
+THEORY
+Linux is a multi-user operating system in which every file and directory is associated with an owner and a group. The permission system controls which operations can be performed by the owner, members of the associated group, and other users. This provides a basic method of protecting information and restricting unauthorised access.
+
+Linux has three standard permission types: read (r), write (w), and execute (x). For a regular file, read allows a user to view its contents, write allows modification, and execute allows it to run as a program or script. For a directory, read allows its entries to be listed, write allows entries to be created or removed, and execute allows users to access items inside it.
+
+Permissions are assigned to three classes: user (u), group (g), and others (o). A long listing such as -rwxr-xr-- displays the file type and permissions for these classes. Numeric permission values use read = 4, write = 2, and execute = 1. For example, 755 gives the owner read, write, and execute permissions, while the group and others receive read and execute permissions.
+
+The chmod command changes permissions. The chown command changes ownership, and chgrp changes group ownership. Permission information is important in system security and forensic analysis because it helps establish which accounts could access or modify particular data.
+
+PROCEDURE
+1. Open Kali Linux and start the terminal.
+2. Run ls -l to view existing permissions and ownership.
+3. Create a test file using touch permission_test.txt.
+4. View its default permissions using ls -l permission_test.txt.
+5. Set permissions using chmod 640 permission_test.txt.
+6. Verify the change using ls -l or stat.
+7. Add owner execute permission using chmod u+x permission_test.txt.
+8. If a test user exists, change ownership using sudo chown username permission_test.txt.
+9. If a test group exists, change group ownership using sudo chgrp groupname permission_test.txt.
+10. Use stat to inspect the final metadata. Do not change system files or original evidence.
+
+COMMANDS AND THEIR FUNCTIONS
+1. ls -l — Displays permissions, owner, group, size, and file name.
+2. chmod 640 file — Sets owner read/write, group read, and no access for others.
+3. chmod u+x file — Adds execute permission for the owner.
+4. chmod g-w file — Removes group write permission.
+5. chown user file — Changes the file owner.
+6. chown user:group file — Changes owner and group.
+7. chgrp group file — Changes group ownership.
+8. stat file — Displays detailed file metadata and timestamps.
+
+RESULT
+The permission structure and ownership information of Linux files were examined. Permission changes and ownership-management commands were studied using a test file.
+
+CONCLUSION
+This practical explained how Linux controls access through read, write, and execute permissions for users, groups, and others. The chmod, chown, and chgrp commands provide control over file access and ownership. Permission metadata can assist forensic interpretation when considered with other system records.

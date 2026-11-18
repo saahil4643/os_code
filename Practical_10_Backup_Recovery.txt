@@ -1,0 +1,54 @@
+PRACTICAL NO. 10: BACKUP AND RECOVERY CONCEPTS IN LINUX ENVIRONMENT
+
+AIM
+To study the creation, management, verification, and restoration of backup files in a Linux environment.
+
+REQUIREMENTS
+1. Computer or laptop.
+2. Kali Linux operating system.
+3. Terminal application.
+4. Sufficient free storage space for practice backups.
+5. Sample directory containing non-essential test files.
+
+THEORY
+Backup is the process of creating an additional copy of data so that it can be restored if the original becomes unavailable, damaged, or accidentally deleted. Recovery is the process of retrieving data from a backup and returning it to a usable location. Backups may be stored on a separate disk, removable media, network storage, or another protected location.
+
+Linux provides several tools for copying and archiving files. The cp command makes direct copies of files and directories. The tar utility combines files and directories into an archive and can optionally compress it. The rsync utility synchronises files between locations and can transfer only the changes needed to update the destination.
+
+A backup plan should consider how often backups are made, where they are stored, who can access them, whether they are encrypted, how long they are retained, and how they are verified. A backup is useful only if it can be read and restored correctly. Hash values can be calculated before and after copying to help verify that copied data is identical. However, a matching hash does not prove that the original source was accurate or complete.
+
+In digital forensics, original evidence must be protected and working copies should be managed carefully. Ordinary file copying is useful for laboratory data but is not a replacement for a bit-for-bit forensic acquisition when such acquisition is required.
+
+PROCEDURE
+1. Open Kali Linux and start the terminal.
+2. Run pwd and ls -la to inspect the current location.
+3. Create a practice directory using mkdir Backup_Lab and enter it.
+4. Create or copy non-essential sample files into the directory.
+5. Create a backup folder using mkdir backup.
+6. Copy a sample file using cp filename backup/.
+7. Create an archive using tar -cvf backup.tar folder/.
+8. Create a compressed archive using tar -czvf backup.tar.gz folder/.
+9. Check the created archives using ls -lh and list their contents using tar -tvf or tar -tzvf.
+10. Create a separate restore directory and extract the compressed archive into it.
+11. Compare original and restored files using sha256sum.
+12. If available, practise synchronisation using rsync -av source/ destination/.
+13. Record the backup location, date, archive type, and verification result.
+
+COMMANDS AND THEIR FUNCTIONS
+1. pwd — Displays the current working directory.
+2. ls -la — Lists all files, including hidden files, with details.
+3. mkdir backup — Creates a backup directory.
+4. cp file backup/ — Copies a file into the backup directory.
+5. cp -r folder backup/ — Copies a directory and its contents.
+6. tar -cvf backup.tar folder/ — Creates an uncompressed archive.
+7. tar -xvf backup.tar — Extracts an uncompressed archive.
+8. tar -czvf backup.tar.gz folder/ — Creates a gzip-compressed archive.
+9. tar -xzvf backup.tar.gz — Extracts a gzip-compressed archive.
+10. rsync -av source/ destination/ — Synchronises directory contents.
+11. sha256sum file — Calculates the SHA-256 hash of a file.
+
+RESULT
+Practice files were copied and archived. Compressed backup creation, archive extraction, directory synchronisation, and hash-based verification were studied.
+
+CONCLUSION
+This practical demonstrated common Linux methods for creating and restoring backup copies. The cp, tar, and rsync utilities support different backup requirements, while hashes help verify copied content. Reliable data protection requires separate storage, regular verification, and careful preservation of original forensic evidence.

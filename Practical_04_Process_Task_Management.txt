@@ -1,0 +1,52 @@
+PRACTICAL NO. 4: PROCESS AND TASK MANAGEMENT COMMANDS IN LINUX
+
+AIM
+To study the identification, monitoring, and management of running processes and background tasks in Linux.
+
+REQUIREMENTS
+1. Linux operating system.
+2. Terminal application.
+3. VirtualBox environment or Linux laboratory system.
+4. Basic knowledge of processes and process IDs.
+
+THEORY
+A process is an instance of a program that is currently running. When a program starts, the operating system creates a process and assigns it a Process ID (PID). A process may create child processes, use memory, access files, communicate over a network, and consume CPU time.
+
+The Linux kernel schedules processes so that they can share processor time and system resources. Process information may include the PID, parent process ID, owner, state, CPU usage, memory usage, and command name. Processes can run in the foreground or background. A foreground process normally occupies the terminal until it finishes, while a background process allows the shell to accept other commands.
+
+Process examination is useful in digital forensics and incident response. Unexpected process names, unusual parent-child relationships, unfamiliar execution paths, or abnormal resource usage may need investigation. A process list is only a point-in-time view and should be compared with logs, executable files, network connections, and memory evidence.
+
+The kill command sends a signal to a process. SIGTERM requests a process to stop normally, while SIGKILL forces termination. Terminating a process changes the system state, so actions should be documented and should not be performed on a live evidence system without authorisation.
+
+PROCEDURE
+1. Open the terminal and run ps to view processes in the current terminal.
+2. Run ps aux to view processes belonging to all users.
+3. Run top to monitor processes and resource usage; press q to exit.
+4. If installed, run htop to view processes interactively.
+5. Find a process using pidof bash or pgrep -a bash.
+6. Start a harmless background task using sleep 300 &.
+7. Run jobs to view the background task.
+8. Find the sample process using pgrep -a sleep.
+9. Stop only the sample process using kill followed by its actual PID.
+10. Run pgrep -a sleep again to check whether it has stopped.
+
+COMMANDS AND THEIR FUNCTIONS
+1. ps — Displays processes associated with the current terminal.
+2. ps aux — Displays detailed processes for all users.
+3. top — Shows live process and resource information.
+4. htop — Provides an interactive process viewer, if installed.
+5. pidof program — Displays the PID of a running program.
+6. pgrep -a name — Searches for processes by name and displays command lines.
+7. kill PID — Sends the normal termination signal to a process.
+8. kill -9 PID — Forces process termination.
+9. killall name — Sends a signal to processes with the specified name.
+10. jobs — Lists background and suspended jobs in the current shell.
+11. bg — Resumes a suspended job in the background.
+12. fg — Brings a background job to the foreground.
+13. sleep 300 & — Runs a sample sleep process in the background.
+
+RESULT
+Running processes were listed and monitored. A sample background process was created, identified, and terminated using the appropriate commands.
+
+CONCLUSION
+This practical demonstrated how Linux creates and manages processes and how users can inspect their status. Process information can help identify unusual activity, but it changes continuously. Forensic observations should be time-stamped and supported by additional evidence.

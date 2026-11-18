@@ -1,0 +1,51 @@
+PRACTICAL NO. 7: SHELL SCRIPTING BASICS IN LINUX ENVIRONMENT
+
+AIM
+To study the structure, creation, execution, and basic programming elements of Bash shell scripts.
+
+REQUIREMENTS
+1. Computer or laptop.
+2. Kali Linux operating system.
+3. Terminal application.
+4. Text editor such as Nano.
+5. Basic knowledge of Linux commands.
+
+THEORY
+A shell is a command interpreter that provides an interface between the user and the operating system. Bash, which stands for Bourne Again Shell, is widely used in Linux. It can accept commands directly from the terminal and can also execute a sequence of commands stored in a script file.
+
+A shell script is a plain-text file containing shell commands and optional programming statements. Script files commonly use the .sh extension. The first line often contains a shebang, such as #!/bin/bash, which tells the system which interpreter should execute the script.
+
+Shell scripts support variables for storing values, comments for explaining instructions, and input/output statements for communicating with users. Conditional statements such as if allow a script to make decisions. Loops repeat instructions for a fixed number of times or while a condition is true. Exit status values indicate whether a command completed successfully; zero normally represents success.
+
+Scripting is useful for automating repeated system-administration tasks, file processing, and basic monitoring. In digital forensics, scripts can reduce repetitive work, but they must be tested and validated. Their commands, parameters, and output should be documented, and scripts should not modify evidence unintentionally.
+
+PROCEDURE
+1. Open Kali Linux and start the terminal.
+2. Create a practice directory using mkdir Script_Lab and enter it.
+3. Create a script using nano first_script.sh.
+4. Add the first line #!/bin/bash.
+5. Add a comment and an output command such as echo "Linux shell scripting practical".
+6. Save the file using Ctrl+O, press Enter, and exit using Ctrl+X.
+7. Check the syntax using bash -n first_script.sh.
+8. Run the script using bash first_script.sh.
+9. Add a variable and display it using echo.
+10. Practise input using read and decision-making using an if statement.
+11. Add execute permission using chmod +x first_script.sh.
+12. Run it using ./first_script.sh and observe the output.
+
+COMMANDS AND THEIR FUNCTIONS
+1. nano script.sh — Opens or creates a script in Nano.
+2. #!/bin/bash — Specifies Bash as the script interpreter.
+3. echo "message" — Displays text or variable values.
+4. read variable — Accepts input and stores it in a variable.
+5. chmod +x script.sh — Adds execute permission.
+6. ./script.sh — Executes the script from the current directory.
+7. bash script.sh — Runs the script through Bash.
+8. bash -n script.sh — Checks syntax without executing the script.
+9. exit 0 — Ends the script with a success status.
+
+RESULT
+A Bash script was created, checked, and executed. Comments, variables, input/output statements, permissions, and basic control structures were studied.
+
+CONCLUSION
+This practical introduced shell scripting as a method for combining Linux commands into repeatable tasks. Bash scripts can reduce manual effort and improve consistency when they are tested and understood before execution.

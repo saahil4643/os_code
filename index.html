@@ -2,20 +2,777 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Practical Files</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux & Forensic Lab Practicals</title>
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 48px auto; padding: 0 16px; }
-    a { display: block; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 8px; color: #0b5fff; text-decoration: none; }
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --border-hover: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent: #0284c7;
+      --accent-light: #f0f9ff;
+      --success: #16a34a;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #090d16;
+        --card-bg: #111827;
+        --border: #1f2937;
+        --border-hover: #374151;
+        --text: #f9fafb;
+        --text-muted: #9ca3af;
+        --primary: #3b82f6;
+        --primary-hover: #60a5fa;
+        --primary-light: #1e293b;
+        --accent: #38bdf8;
+        --accent-light: #0c2d48;
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 32px 16px 64px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 28px;
+    }
+
+    .badge-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .info-banner {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: 14px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-banner p {
+      margin-bottom: 6px;
+      color: var(--text-muted);
+    }
+
+    .info-banner p:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-banner code {
+      font-family: var(--font-mono);
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .search-box {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .practical-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .practical-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .practical-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .card-header-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .practical-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .url-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--border);
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .url-pill:hover {
+      color: var(--primary);
+    }
+
+    .practical-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .practical-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-top: 4px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--border-hover);
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      padding: 7px 10px;
+    }
+
+    .btn-ghost:hover {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    /* Modal for In-Page Viewer */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(3px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 1000;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 840px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      animation: modalIn 0.2s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-title-group h2 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .modal-title-group span {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-body {
+      padding: 16px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .code-preview {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--text);
+      background: var(--bg);
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 500;
+      box-shadow: var(--shadow-md);
+      display: none;
+      z-index: 2000;
+      animation: toastIn 0.2s ease;
+    }
+
+    @keyframes toastIn {
+      from { transform: translateY(10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
   </style>
 </head>
 <body>
-  <h1>Practical Files</h1>
-  <p>Open /2 to /6 to download that practical.</p>
-  <a href="/2">Practical 2</a>
-  <a href="/3">Practical 3</a>
-  <a href="/4">Practical 4</a>
-  <a href="/5">Practical 5</a>
-  <a href="/6">Practical 6</a>
+  <div class="container">
+    <header>
+      <div class="badge-title">Server Routing Active</div>
+      <h1>Practical Files</h1>
+      <p class="subtitle">Direct short-URL file delivery for Linux & Digital Forensics practicals.</p>
+
+      <div class="info-banner">
+        <p><strong>Direct URLs:</strong> Navigate to <code>/{number}</code> (e.g. <code>/1</code>, <code>/2</code>, ... <code>/10</code>) to download that practical directly.</p>
+        <p><strong>Online View:</strong> Navigate to <code>/raw/{number}</code> or click <em>Preview</em> below to view without downloading.</p>
+      </div>
+
+      <div class="search-box">
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Search practicals by title, topic, or number (e.g. 1, permissions, shell)..."
+          autocomplete="off"
+        />
+      </div>
+    </header>
+
+    <main class="practical-list" id="practicalList">
+      <!-- Practical 01 -->
+      <article class="practical-card" data-num="1" data-search="1 01 linux installation virtualbox kali vm hypervisor">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 01</span>
+              <a href="/1" class="url-pill">/1</a>
+              <a href="/01" class="url-pill">/01</a>
+            </div>
+            <h2 class="practical-title">Installation of Linux OS using VirtualBox</h2>
+            <p class="practical-desc">Study and perform installation of Kali Linux in Oracle VM VirtualBox for a safe laboratory environment.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/1" download="Practical_01_Linux_Installation.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_01_Linux_Installation.txt" data-title="Practical 01: Linux Installation">Preview</button>
+          <a href="/raw/1" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/1">Copy Link</button>
+        </div>
+      </article>
+
+      <!-- Practical 02 -->
+      <article class="practical-card" data-num="2" data-search="2 02 basic linux commands file management pwd ls cd mkdir touch cp mv rm whoami date">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 02</span>
+              <a href="/2" class="url-pill">/2</a>
+              <a href="/02" class="url-pill">/02</a>
+            </div>
+            <h2 class="practical-title">Basic Linux Commands & File Management</h2>
+            <p class="practical-desc">Basic terminal navigation, file creation, copying, moving, listing, and inspection (pwd, ls, mkdir, cp, mv, rm).</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/2" download="Practical_02_Basic_Linux_Commands.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_02_Basic_Linux_Commands.txt" data-title="Practical 02: Basic Linux Commands">Preview</button>
+          <a href="/raw/2" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/2">Copy Link</button>
+        </div>
+      </article>
+
+      <!-- Practical 03 -->
+      <article class="practical-card" data-num="3" data-search="3 03 user group management useradd passwd usermod userdel groupadd etc passwd shadow">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 03</span>
+              <a href="/3" class="url-pill">/3</a>
+              <a href="/03" class="url-pill">/03</a>
+            </div>
+            <h2 class="practical-title">User and Group Management in Linux</h2>
+            <p class="practical-desc">Managing users and groups, password configuration, group memberships, and checking /etc/passwd and /etc/shadow.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/3" download="Practical_03_User_Group_Management.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_03_User_Group_Management.txt" data-title="Practical 03: User & Group Management">Preview</button>
+          <a href="/raw/3" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/3">Copy Link</button>
+        </div>
+      </article>
+
+      <!-- Practical 04 -->
+      <article class="practical-card" data-num="4" data-search="4 04 process task management ps top htop kill pkill nice jobs bg fg signal">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 04</span>
+              <a href="/4" class="url-pill">/4</a>
+              <a href="/04" class="url-pill">/04</a>
+            </div>
+            <h2 class="practical-title">Process & Task Management Commands</h2>
+            <p class="practical-desc">Monitoring running processes, process states, signaling, killing, priority renicing, and background job handling.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/4" download="Practical_04_Process_Task_Management.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_04_Process_Task_Management.txt" data-title="Practical 04: Process & Task Management">Preview</button>
+          <a href="/raw/4" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/4">Copy Link</button>
+        </div>
+      </article>
+
+      <!-- Practical 05 -->
+      <article class="practical-card" data-num="5" data-search="5 05 memory storage management free vmstat df du fdisk lsblk swap ram">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 05</span>
+              <a href="/5" class="url-pill">/5</a>
+              <a href="/05" class="url-pill">/05</a>
+            </div>
+            <h2 class="practical-title">Memory & Storage Management Concepts</h2>
+            <p class="practical-desc">Inspecting RAM and swap memory, checking filesystem disk space (df, du), partitions (lsblk, fdisk), and virtual memory statistics.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/5" download="Practical_05_Memory_Storage_Management.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_05_Memory_Storage_Management.txt" data-title="Practical 05: Memory & Storage Management">Preview</button>
+          <a href="/raw/5" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/5">Copy Link</button>
+        </div>
+      </article>
+
+      <!-- Practical 06 -->
+      <article class="practical-card" data-num="6" data-search="6 06 file permissions ownership chmod chown chgrp umask octal read write execute">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 06</span>
+              <a href="/6" class="url-pill">/6</a>
+              <a href="/06" class="url-pill">/06</a>
+            </div>
+            <h2 class="practical-title">File Permissions & Ownership Management</h2>
+            <p class="practical-desc">Linux permission model (rwx, octal notation), changing file modes (chmod), changing owner and group (chown, chgrp).</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/6" download="Practical_06_File_Permissions_Ownership.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_06_File_Permissions_Ownership.txt" data-title="Practical 06: File Permissions & Ownership">Preview</button>
+          <a href="/raw/6" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/6">Copy Link</button>
+        </div>
+      </article>
+
+      <!-- Practical 07 -->
+      <article class="practical-card" data-num="7" data-search="7 07 shell scripting bash variables loops conditional if else function automation">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 07</span>
+              <a href="/7" class="url-pill">/7</a>
+              <a href="/07" class="url-pill">/07</a>
+            </div>
+            <h2 class="practical-title">Shell Scripting Basics in Linux</h2>
+            <p class="practical-desc">Writing Bash scripts, shebang (#!/bin/bash), variables, user input, conditional logic, loops, and repetitive task automation.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/7" download="Practical_07_Shell_Scripting.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_07_Shell_Scripting.txt" data-title="Practical 07: Shell Scripting Basics">Preview</button>
+          <a href="/raw/7" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/7">Copy Link</button>
+        </div>
+      </article>
+
+      <!-- Practical 08 -->
+      <article class="practical-card" data-num="8" data-search="8 08 package management software apt update upgrade install remove dpkg">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 08</span>
+              <a href="/8" class="url-pill">/8</a>
+              <a href="/08" class="url-pill">/08</a>
+            </div>
+            <h2 class="practical-title">Package Installation & Software Management</h2>
+            <p class="practical-desc">Software repositories, updating package indices, installing, verifying, and removing packages via APT and dpkg.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/8" download="Practical_08_Package_Management.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_08_Package_Management.txt" data-title="Practical 08: Package Management">Preview</button>
+          <a href="/raw/8" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/8">Copy Link</button>
+        </div>
+      </article>
+
+      <!-- Practical 09 -->
+      <article class="practical-card" data-num="9" data-search="9 09 system monitoring log management journalctl var log syslog auth log dmesg forensic">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 09</span>
+              <a href="/9" class="url-pill">/9</a>
+              <a href="/09" class="url-pill">/09</a>
+            </div>
+            <h2 class="practical-title">System Monitoring & Log Management</h2>
+            <p class="practical-desc">Inspecting system logs in /var/log, syslog, authentication logs (auth.log), systemd logs via journalctl, and forensic timeline analysis.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/9" download="Practical_09_System_Monitoring_Logs.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_09_System_Monitoring_Logs.txt" data-title="Practical 09: System Monitoring & Logs">Preview</button>
+          <a href="/raw/9" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/9">Copy Link</button>
+        </div>
+      </article>
+
+      <!-- Practical 10 -->
+      <article class="practical-card" data-num="10" data-search="10 backup recovery tar gzip dd rsync sha256sum md5sum forensic image hash">
+        <div class="card-top">
+          <div class="card-meta">
+            <div class="card-header-line">
+              <span class="practical-tag">Practical 10</span>
+              <a href="/10" class="url-pill">/10</a>
+            </div>
+            <h2 class="practical-title">Backup & Recovery Concepts</h2>
+            <p class="practical-desc">Creating tar archives, compressed backups (gzip), bit-stream raw imaging with dd, sync via rsync, and cryptographic hash verification.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="/10" download="Practical_10_Backup_Recovery.txt" class="btn btn-primary">Download (.txt)</a>
+          <button class="btn btn-outline preview-btn" data-file="Practical_10_Backup_Recovery.txt" data-title="Practical 10: Backup & Recovery">Preview</button>
+          <a href="/raw/10" target="_blank" class="btn btn-ghost">Raw View</a>
+          <button class="btn btn-ghost copy-btn" data-url="/10">Copy Link</button>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <p>Practicals hosted via Vercel Edge Rewrites. All files served in UTF-8 text format.</p>
+    </footer>
+  </div>
+
+  <!-- Modal Previewer -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2 id="modalTitle">Practical Preview</h2>
+          <span id="modalFilename">filename.txt</span>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-primary btn-sm" id="modalCopyBtn">Copy All</button>
+          <a href="#" class="btn btn-outline btn-sm" id="modalDownloadLink" download>Download</a>
+          <button class="btn btn-ghost btn-sm" id="modalCloseBtn">✕</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <pre class="code-preview" id="modalContent">Loading practical content...</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Link copied to clipboard!</div>
+
+  <script>
+    // Search / Filter
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.practical-card');
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const searchText = (card.getAttribute('data-search') + ' ' + card.innerText).toLowerCase();
+        if (!query || searchText.includes(query)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+
+    // Copy Short URL functionality
+    const copyButtons = document.querySelectorAll('.copy-btn');
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.style.display = 'none';
+      }, 2000);
+    }
+
+    copyButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const path = btn.getAttribute('data-url');
+        const fullUrl = window.location.origin + path;
+        try {
+          await navigator.clipboard.writeText(fullUrl);
+          showToast(`Copied ${path} link to clipboard!`);
+        } catch (err) {
+          // Fallback
+          const ta = document.createElement('textarea');
+          ta.value = fullUrl;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showToast(`Copied ${path} link to clipboard!`);
+        }
+      });
+    });
+
+    // Modal Preview functionality
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalFilename = document.getElementById('modalFilename');
+    const modalContent = document.getElementById('modalContent');
+    const modalCopyBtn = document.getElementById('modalCopyBtn');
+    const modalDownloadLink = document.getElementById('modalDownloadLink');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const previewButtons = document.querySelectorAll('.preview-btn');
+
+    async function openPreview(filename, title) {
+      modalTitle.textContent = title;
+      modalFilename.textContent = filename;
+      modalContent.textContent = 'Loading practical content...';
+      modalDownloadLink.href = '/' + filename;
+      modalDownloadLink.setAttribute('download', filename);
+      modalOverlay.classList.add('open');
+
+      try {
+        const res = await fetch('/' + filename);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
+        modalContent.textContent = text;
+      } catch (err) {
+        modalContent.textContent = `Error loading file: ${err.message}\nYou can download it directly using the button above.`;
+      }
+    }
+
+    previewButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const file = btn.getAttribute('data-file');
+        const title = btn.getAttribute('data-title');
+        openPreview(file, title);
+      });
+    });
+
+    function closeModal() {
+      modalOverlay.classList.remove('open');
+    }
+
+    modalCloseBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
+        closeModal();
+      }
+    });
+
+    modalCopyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(modalContent.textContent);
+        showToast('All practical content copied to clipboard!');
+      } catch (e) {
+        showToast('Failed to copy');
+      }
+    });
+
+    // Client-side auto-scroll or preview if hash or query present (e.g. #1 or ?p=1)
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '').trim();
+      const params = new URLSearchParams(window.location.search);
+      const targetNum = hash || params.get('p') || params.get('practical');
+      if (targetNum) {
+        const targetCard = document.querySelector(`.practical-card[data-num="${parseInt(targetNum, 10)}"]`);
+        if (targetCard) {
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetCard.style.borderColor = 'var(--primary)';
+        }
+      }
+    });
+  </script>
 </body>
 </html>

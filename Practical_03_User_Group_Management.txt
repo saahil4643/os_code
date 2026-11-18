@@ -1,0 +1,51 @@
+PRACTICAL NO. 3: USER AND GROUP MANAGEMENT IN LINUX
+
+AIM
+To study user accounts, groups, user identification, and account-management commands in Linux.
+
+REQUIREMENTS
+1. Linux operating system.
+2. Terminal application.
+3. Administrative privileges for account-management operations.
+
+THEORY
+Linux is a multi-user operating system. It allows several user accounts to use the same computer while maintaining separate identities, permissions, and access to resources. Every user account has a numerical User ID (UID). Groups have a Group ID (GID) and make it easier to assign common permissions to multiple users.
+
+The root account is the system superuser and has extensive administrative privileges. Ordinary users generally work with limited permissions. The sudo command allows authorised users to run selected commands with elevated privileges.
+
+Linux stores account information in system files. The /etc/passwd file contains basic account details such as user name, UID, GID, home directory, and login shell. The /etc/group file stores group information and membership. Protected password hashes and related account information are stored in /etc/shadow, which has restricted access.
+
+User and group information is useful in digital forensic investigations because it can show which accounts existed and which groups or permissions were assigned. However, an account record alone does not prove who physically used the computer. It should be compared with authentication logs, timestamps, and other evidence.
+
+PROCEDURE
+1. Open the terminal and run whoami to identify the current account.
+2. Run id to view the UID, GID, and group memberships.
+3. Create a test account using sudo adduser forensicuser.
+4. Verify the account using id forensicuser.
+5. Create a test group using sudo groupadd forensicgroup.
+6. Add the test user to the group using sudo usermod -aG forensicgroup forensicuser.
+7. Verify membership using groups forensicuser.
+8. If required, demonstrate a username change using sudo usermod -l investigator forensicuser.
+9. Remove only the test account after the exercise, if instructed.
+10. Examine account records using read-only commands. Do not edit system account files directly.
+
+COMMANDS AND THEIR FUNCTIONS
+1. whoami — Displays the current effective user name.
+2. id — Displays UID, GID, and group memberships.
+3. id username — Displays identity details for a specified user.
+4. sudo adduser username — Creates a user account interactively.
+5. sudo useradd username — Creates a user using the lower-level account utility.
+6. sudo passwd username — Sets or changes a user's password.
+7. sudo groupadd groupname — Creates a new group.
+8. sudo usermod -aG groupname username — Adds a user to a supplementary group.
+9. groups username — Displays the groups of a user.
+10. sudo usermod -l new old — Changes a user's login name.
+11. sudo deluser username — Removes a user on Debian-based systems.
+12. cat /etc/passwd — Displays basic user-account records.
+13. getent group — Displays group records.
+
+RESULT
+User and group information was examined, and test account and group-management operations were practised using Linux commands.
+
+CONCLUSION
+This practical explained how Linux identifies users and organises them into groups. UID and GID values, account databases, and administrative commands are important for understanding access control. In forensic analysis, these details should be compared with other records before drawing conclusions about user activity.

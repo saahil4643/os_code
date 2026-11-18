@@ -1,0 +1,55 @@
+PRACTICAL NO. 2: BASIC LINUX COMMANDS AND FILE MANAGEMENT OPERATIONS
+
+AIM
+To study and perform basic Linux terminal commands and common file and directory management operations.
+
+REQUIREMENTS
+1. Computer or laptop with Kali Linux or another Linux distribution.
+2. Terminal application.
+3. Basic knowledge of the Linux command-line interface.
+
+THEORY
+Linux provides a graphical interface as well as a command-line interface (CLI). The CLI accepts text instructions through a shell such as Bash. Commands are used to navigate the system, display information, create files and directories, inspect data, and manage files. Commands may include options and arguments that change their behaviour.
+
+Linux stores files in a hierarchical directory structure. The top-level directory is represented by a forward slash (/), known as the root directory. Directories can contain files and other directories. An absolute path starts from the root directory, while a relative path is interpreted from the current working directory.
+
+File-management commands are important in digital forensics because an investigator may need to locate folders, list files, inspect contents, and create working copies. Commands such as rm can permanently delete files, so they must be used carefully. Forensic examination should normally be performed on a verified copy while the original evidence is preserved.
+
+PROCEDURE
+1. Log in to Linux and open the terminal.
+2. Run pwd to identify the current working directory.
+3. Run ls, ls -l, and ls -a to view files and directory details.
+4. Create a practice directory using mkdir Forensic_Lab.
+5. Enter it using cd Forensic_Lab and verify the path with pwd.
+6. Create a sample file using touch evidence.txt.
+7. Add a test line using a text editor and display it with cat evidence.txt.
+8. Copy the file using cp evidence.txt evidence_copy.txt.
+9. Rename the copy using mv evidence_copy.txt working_copy.txt.
+10. Remove only the test copy using rm working_copy.txt.
+11. Use whoami and date to view the current user and system date.
+12. Use man ls to view the command manual.
+
+COMMANDS AND THEIR FUNCTIONS
+1. pwd — Displays the current directory path.
+2. ls — Lists files and directories.
+3. ls -l — Shows detailed file information and permissions.
+4. ls -a — Includes hidden files.
+5. cd directory — Changes the current directory.
+6. mkdir name — Creates a directory.
+7. rmdir name — Removes an empty directory.
+8. touch file — Creates an empty file or updates its timestamps.
+9. cat file — Displays file contents.
+10. cp source destination — Copies a file.
+11. cp -r source destination — Copies a directory and its contents.
+12. mv old new — Moves or renames a file.
+13. rm file — Deletes the specified file.
+14. clear — Clears the terminal display.
+15. whoami — Displays the current user name.
+16. date — Displays the system date and time.
+17. man command — Opens the manual page for a command.
+
+RESULT
+Basic Linux commands were executed to navigate directories, display file information, create files and folders, inspect text, copy data, and rename or remove practice files.
+
+CONCLUSION
+This practical introduced the Linux directory structure and essential terminal operations. These commands support file navigation and preliminary examination. In forensic work, commands should be documented and destructive operations must never be performed on original evidence.

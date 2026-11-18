@@ -1,0 +1,48 @@
+PRACTICAL NO. 5: MEMORY AND STORAGE MANAGEMENT CONCEPTS IN LINUX
+
+AIM
+To study memory utilisation, swap space, storage devices, partitions, and mounted file systems in Linux.
+
+REQUIREMENTS
+1. Linux operating system.
+2. Terminal application.
+3. VirtualBox environment.
+4. System with available storage devices or virtual disks.
+
+THEORY
+Memory management is an important operating-system function. Linux manages physical Random Access Memory (RAM) and allocates memory to running processes. Memory pages are assigned to processes, and the kernel reclaims or reallocates memory as requirements change. Linux also uses available RAM for buffers and caches to improve performance, so the free-memory value should not be considered alone.
+
+Swap space is disk storage that can hold memory pages that are not currently required in RAM. It may be configured as a dedicated partition or a swap file. Swap can support a system when physical memory is under pressure, but disk access is slower than RAM.
+
+Storage management deals with persistent storage devices such as hard disk drives, solid-state drives, USB devices, and virtual disks. A disk may contain one or more partitions. A file system such as ext4 organises data and provides structures for storing, locating, and managing files and directories.
+
+Mounting makes a file system accessible at a directory called a mount point. The mount table displays file systems currently attached to the directory structure. In forensic examination, storage layout, partition boundaries, file-system metadata, and unused space may contain important information. Evidence media should be handled with write-protection and approved forensic procedures.
+
+PROCEDURE
+1. Open the terminal and run free -h to examine RAM and swap usage.
+2. Run cat /proc/meminfo to view detailed memory statistics.
+3. Execute df -h to inspect file-system capacity and available space.
+4. Run lsblk to view storage devices and partitions.
+5. Use blkid to inspect file-system types and identifiers.
+6. Run sudo fdisk -l to view partition information only.
+7. Execute du -sh . to view the size of the current directory.
+8. Run mount to list mounted file systems.
+9. Run swapon --show to view active swap areas.
+10. Record the observed values. Do not modify partitions or mount unknown evidence media in read-write mode.
+
+COMMANDS AND THEIR FUNCTIONS
+1. free -h — Displays RAM and swap statistics in readable units.
+2. cat /proc/meminfo — Displays detailed memory information.
+3. df -h — Displays used and available file-system space.
+4. du -sh directory — Displays the total size of a directory.
+5. lsblk — Lists block devices, partitions, and mount points.
+6. blkid — Displays file-system type, label, and UUID.
+7. sudo fdisk -l — Lists disk partition information.
+8. mount — Displays currently mounted file systems.
+9. swapon --show — Displays active swap devices or files.
+
+RESULT
+RAM, swap usage, disk-space utilisation, block devices, partition information, and mounted file systems were examined using Linux commands.
+
+CONCLUSION
+This practical provided an understanding of how Linux manages temporary memory and persistent storage. These observations help describe a system and identify storage locations that may contain digital evidence. Partitioning and mounting operations must be handled carefully to avoid altering original evidence.

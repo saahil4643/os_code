@@ -1,0 +1,44 @@
+PRACTICAL NO. 1: INSTALLATION OF LINUX OPERATING SYSTEM USING VIRTUALBOX
+
+AIM
+To study and perform the installation of the Kali Linux operating system using Oracle VM VirtualBox.
+
+REQUIREMENTS
+1. Computer or laptop with Windows, Linux, or macOS.
+2. Oracle VM VirtualBox installer.
+3. Kali Linux VirtualBox image.
+4. Internet connection to download the required files.
+5. Sufficient RAM and free disk space.
+
+THEORY
+Linux is an open-source, Unix-like operating system. It manages computer hardware and provides services required by application software. A Linux distribution includes the Linux kernel, system utilities, libraries, package-management tools, and usually a desktop environment.
+
+Kali Linux is a Debian-based Linux distribution that includes tools used in cybersecurity, incident response, and digital forensic examination. It provides a suitable environment for learning Linux commands and practising forensic procedures.
+
+Virtualization is a technology that allows a virtual computer to run inside a physical computer. Oracle VM VirtualBox acts as a hypervisor and creates virtual machines (VMs). Each VM is assigned virtual hardware such as RAM, processor cores, a virtual hard disk, display, and network adapter. The guest operating system runs separately from the host operating system.
+
+A virtual machine is useful in laboratory work because experiments can be performed in a controlled environment without installing the operating system directly on the main computer. Snapshots can also save a known system state and help restore the VM after experiments. In digital forensics, a controlled Linux environment can be used to inspect files, examine logs, calculate hashes, and learn forensic tools. However, a VM alone does not guarantee evidence integrity; original evidence should be preserved and examined through verified copies.
+
+PROCEDURE
+1. Check that the computer has sufficient RAM and free disk space.
+2. Download Oracle VM VirtualBox from its official website.
+3. Install VirtualBox using the normal installation options.
+4. Download the Kali Linux VirtualBox image from the official Kali website.
+5. Extract the downloaded archive if it is compressed.
+6. Open VirtualBox and choose the option to add or open an existing VM.
+7. Select the Kali Linux .vbox configuration file.
+8. Check the RAM, processor, virtual disk, and network settings.
+9. Start the Kali Linux virtual machine.
+10. Log in using the credentials supplied with the downloaded image.
+11. Open the terminal and verify the operating-system details.
+12. Shut down Kali Linux properly after completing the practical.
+
+COMMANDS AND THEIR FUNCTIONS
+1. uname -a — Displays kernel, system, version, and machine architecture details.
+2. cat /etc/os-release — Displays the Linux distribution name and version.
+
+RESULT
+The Kali Linux virtual machine was configured and started successfully in Oracle VM VirtualBox. The operating-system information was examined.
+
+CONCLUSION
+This practical demonstrated how virtualization can be used to create a controlled Linux laboratory. VirtualBox allows Linux experiments to be performed without directly changing the host operating system. Proper resource allocation and a clean baseline help maintain a stable laboratory environment.

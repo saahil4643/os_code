@@ -1,0 +1,51 @@
+PRACTICAL NO. 8: PACKAGE INSTALLATION AND SOFTWARE MANAGEMENT CONCEPTS IN LINUX
+
+AIM
+To study package repositories and the installation, updating, upgrading, and removal of software in Kali Linux.
+
+REQUIREMENTS
+1. Computer or laptop.
+2. Kali Linux operating system.
+3. Working internet connection.
+4. Terminal application.
+5. Administrative privileges for package installation.
+
+THEORY
+Package management is the process of installing, updating, configuring, and removing software in an operating system. Kali Linux is based on Debian and uses the Advanced Package Tool (APT), together with the lower-level dpkg package system.
+
+A software package contains application files and information required for installation. Packages may depend on other libraries or packages. A package manager checks these dependencies and obtains software from configured repositories. A repository is a maintained source of software packages and package information.
+
+APT maintains a local package index that describes the package versions available from configured repositories. The apt update command refreshes this index; it does not itself upgrade installed applications. The apt upgrade command installs newer available versions of installed packages. Installation and removal operations may change system files and configuration, so administrative permission is normally required.
+
+In forensic environments, software installation can alter system state, create logs, and change timestamps. A forensic workstation should be prepared and documented before examination. Where possible, tools should be installed and tested in advance rather than modifying the original evidence environment during an investigation.
+
+PROCEDURE
+1. Open Kali Linux and launch the terminal.
+2. Check that the internet connection is working.
+3. Run sudo apt update to refresh the package index.
+4. Search for a package using apt search keyword.
+5. View package details using apt show package-name.
+6. Install an authorised laboratory package using sudo apt install package-name.
+7. Verify installation using dpkg -l or apt show package-name.
+8. Study upgrades using sudo apt upgrade after reviewing the proposed changes.
+9. Understand removal and purge using a non-essential test package only, if authorised.
+10. Review the proposed changes before running autoremove or clean.
+11. Record the package name, version, and operations performed.
+
+COMMANDS AND THEIR FUNCTIONS
+1. sudo apt update — Refreshes package-index information.
+2. sudo apt upgrade — Upgrades installed packages.
+3. sudo apt install package — Installs a package and its dependencies.
+4. sudo apt remove package — Removes a package but may retain configuration files.
+5. sudo apt purge package — Removes a package and its system-wide configuration files.
+6. sudo apt autoremove — Removes dependencies that are no longer required.
+7. apt search keyword — Searches package names and descriptions.
+8. apt show package — Displays package information.
+9. dpkg -l — Lists packages and their installation status.
+10. sudo apt clean — Removes downloaded package archives from the local cache.
+
+RESULT
+APT and dpkg package-management functions were studied. Repository updates, package searches, package information, installation status, upgrades, and removal options were examined.
+
+CONCLUSION
+This practical explained how Kali Linux obtains and maintains software through repositories and package-management tools. APT simplifies dependency handling and software maintenance. Package operations should be planned and documented because they can change the configuration and forensic state of a system.
