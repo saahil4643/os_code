@@ -1,0 +1,60 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 7
+
+Aim
+
+To create and configure Virtual Local Area Networks (VLANs) on a switch
+and study logical network segmentation.
+
+Requirement
+
+-   Computer or laptop with Cisco Packet Tracer
+-   One manageable Cisco switch and four PCs
+-   Copper straight-through cables
+
+Theory
+
+A Virtual Local Area Network (VLAN) is a logical division of a switched
+network. It allows devices connected to the same physical switch to be
+separated into different logical broadcast domains. Each VLAN is
+identified by a VLAN number and can be given a name. Switch ports are
+assigned to the required VLAN, commonly in access mode for end devices.
+Devices in the same VLAN and IP subnet can communicate through the
+switch. Devices in different VLANs generally require a Layer 3 device,
+such as a router or Layer 3 switch, to route traffic between them. VLANs
+help organise and segment a network.
+
+Procedure
+
+1.  Place one switch and four PCs in the Packet Tracer workspace.
+2.  Connect each PC to a separate switch port.
+3.  Configure PC0 and PC1 with addresses 192.168.10.2 and 192.168.10.3,
+    subnet mask 255.255.255.0.
+4.  Configure PC2 and PC3 with addresses 192.168.20.2 and 192.168.20.3,
+    subnet mask 255.255.255.0.
+5.  Open the switch CLI and enter enable followed by configure terminal.
+6.  Create VLAN 10 using vlan 10 and name it STUDENTS. Exit VLAN
+    configuration.
+7.  Create VLAN 20 using vlan 20 and name it FACULTY. Exit VLAN
+    configuration.
+8.  Assign ports Fa0/1–Fa0/2 to VLAN 10 using interface range
+    fastEthernet 0/1-2, switchport mode access and switchport access
+    vlan 10.
+9.  Assign ports Fa0/3–Fa0/4 to VLAN 20 using interface range
+    fastEthernet 0/3-4, switchport mode access and switchport access
+    vlan 20.
+10. Enter end and verify VLAN membership using show vlan brief.
+11. Ping between PC0 and PC1 to test same-VLAN communication.
+12. Try pinging PC2 from PC0 and observe that inter-VLAN routing is
+    required for communication across VLANs.
+
+Result
+
+VLAN 10 (STUDENTS) and VLAN 20 (FACULTY) were configured successfully,
+and same-VLAN communication was tested.
+
+Conclusion
+
+VLANs were created to logically separate devices on one physical switch.
+The practical showed that devices in the same VLAN can communicate
+within their subnet, while communication between different VLANs
+requires Layer 3 routing.

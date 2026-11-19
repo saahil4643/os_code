@@ -1,0 +1,53 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 5
+
+Aim
+
+To design and study a hybrid topology by combining two or more different
+network topologies in Cisco Packet Tracer.
+
+Requirement
+
+-   Computer or laptop with Cisco Packet Tracer
+-   Multiple PCs and at least two switches
+-   One router if communication between different IP subnets is required
+-   Copper straight-through cables
+
+Theory
+
+A hybrid network topology is formed by combining two or more basic
+network topologies, such as star, bus, ring or tree. It is used when a
+single topology does not meet the complete requirements of a network.
+For example, separate groups of computers may be arranged in star
+segments and those segments may be interconnected through switches or
+routers. A hybrid design can provide flexibility and can be adapted to
+the size and structure of an organization. Devices that communicate
+within the same subnet need unique IP addresses in that subnet;
+communication between different subnets requires routing.
+
+Procedure
+
+1.  Open Cisco Packet Tracer and place multiple PCs and switches in the
+    workspace.
+2.  Arrange the first group of PCs around a switch to form a star
+    topology.
+3.  Arrange a second group using another topology or switch segment.
+4.  Connect the two segments through a central switch or router,
+    according to the chosen design.
+5.  Connect the devices using appropriate Ethernet cables.
+6.  Assign unique IP addresses to PCs in the same subnet, or configure
+    separate subnets and router interfaces if inter-network
+    communication is required.
+7.  Check that all physical links are active.
+8.  Perform ping tests between devices that should be able to
+    communicate.
+
+Result
+
+A hybrid network was designed in Packet Tracer, and connectivity between
+the configured devices was tested.
+
+Conclusion
+
+The practical demonstrated how two or more network topologies can be
+combined into a hybrid design. The resulting structure can be selected
+according to network layout and communication requirements.

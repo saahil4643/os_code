@@ -1,0 +1,88 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 10
+
+Aim
+
+To configure Voice over IP (VoIP) phones and Ethernet connectivity in
+Cisco Packet Tracer and study IP-based voice communication.
+
+Requirement
+
+-   Computer or laptop with Cisco Packet Tracer
+-   Router supporting Cisco Unified Communications Manager Express (CME) / telephony-service (e.g. Cisco 2811)
+-   PoE-capable switch or phone power adapters
+-   Two IP Phones (Cisco 7960) and Ethernet cables
+
+Theory
+
+Voice over IP (VoIP) is a technology that allows voice calls and audio
+communication to be delivered over Internet Protocol (IP) networks rather
+than traditional public switched telephone networks (PSTN). In a Packet
+Tracer VoIP environment, an IP phone converts voice signals into digital
+packets. The router acts as a call agent using Cisco IP Telephony
+services (CME), assigning directory numbers (extensions) to phones and
+managing call signaling. A DHCP server with Option 150 provides phones
+with their IP configuration and the TFTP server address where configuration
+files are hosted. Voice VLANs prioritize real-time voice packets over standard
+data traffic to ensure quality of service.
+
+Procedure
+
+1.  Place a telephony-capable router (e.g., Cisco 2811), a 2960 switch,
+    and two Cisco 7960 IP Phones in the workspace.
+2.  Connect the router to the switch using an Ethernet cable.
+3.  Connect each IP phone to a switch port. Connect the power adapter to
+    each IP phone to power it up.
+4.  Configure the router's LAN interface:
+    enable
+    configure terminal
+    interface FastEthernet 0/0
+    ip address 192.168.1.1 255.255.255.0
+    no shutdown
+    exit
+5.  Configure the DHCP voice pool with Option 150 for TFTP:
+    ip dhcp pool VOICE
+    network 192.168.1.0 255.255.255.0
+    default-router 192.168.1.1
+    option 150 ip 192.168.1.1
+    exit
+6.  Configure the telephony service on the router:
+    telephony-service
+    max-ephones 5
+    max-dn 5
+    ip source-address 192.168.1.1 port 2000
+    auto assign 1 to 5
+    create cnf-files
+    exit
+7.  Configure directory numbers (extensions):
+    ephone-dn 1
+    number 1001
+    exit
+    ephone-dn 2
+    number 1002
+    exit
+    end
+    copy running-config startup-config
+8.  Configure the switch ports connected to IP phones with voice VLAN:
+    interface range FastEthernet 0/1-5
+    switchport mode access
+    switchport voice vlan 1
+    exit
+9.  Wait for the IP phones to boot, obtain IP addresses via DHCP, and
+    register with the router. Verify that extension 1001 appears on Phone 1
+    and extension 1002 appears on Phone 2.
+10. Lift the handset on Phone 1, dial 1002, answer Phone 2, and observe the
+    active connected call status.
+
+Result
+
+VoIP phones and IP telephony services were configured successfully in Cisco
+Packet Tracer, and voice call signaling was verified between extension 1001
+and 1002.
+
+Conclusion
+
+Voice over IP (VoIP) telephony was deployed using a Cisco router and IP
+phones. Phones dynamically registered with Call Manager Express, obtained
+their directory numbers, and successfully established voice calls over an
+Ethernet network.
+

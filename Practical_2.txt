@@ -1,0 +1,52 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 2
+
+Aim
+
+To design, configure and test a simple computer network using Cisco
+Packet Tracer.
+
+Requirement
+
+-   Computer or laptop
+-   Cisco Packet Tracer software
+-   Two or more PCs
+-   One Ethernet switch
+-   Copper straight-through cables
+
+Theory
+
+A Local Area Network (LAN) connects computers and other devices within a
+limited area so that they can exchange data. In a basic switched LAN,
+each computer connects to a switch through an Ethernet cable. The switch
+forwards frames to the appropriate port using device MAC addresses. For
+devices on the same IP subnet to communicate, each device must have a
+unique IP address and a compatible subnet mask. Cisco Packet Tracer is a
+network simulation tool that allows a LAN to be designed, configured and
+tested virtually. The ping command checks reachability by sending ICMP
+echo requests to another device.
+
+Procedure
+
+1.  Open Cisco Packet Tracer.
+2.  From End Devices, drag two or more PCs into the workspace.
+3.  From Network Devices > Switches, place one switch in the workspace.
+4.  Select Connections and choose Copper Straight-Through.
+5.  Connect each PC’s FastEthernet interface to a separate switch port.
+6.  On PC0, open Desktop > IP Configuration and assign IP address
+    192.168.1.1 with subnet mask 255.255.255.0.
+7.  On PC1, assign IP address 192.168.1.2 with subnet mask
+    255.255.255.0. Use unique addresses in the same subnet for
+    additional PCs.
+8.  Open Desktop > Command Prompt on PC0.
+9.  Run the command: ping 192.168.1.2 and observe the replies.
+
+Result
+
+The simple LAN was implemented in Packet Tracer, and connectivity
+between the PCs was tested successfully using ping.
+
+Conclusion
+
+A basic switched LAN was designed and configured. Assigning unique IP
+addresses in the same subnet enabled the connected PCs to communicate,
+and the ping test was used to verify connectivity.

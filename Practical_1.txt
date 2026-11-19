@@ -1,0 +1,52 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 1
+
+Aim
+
+To identify the wireless network adapter installed on the host computer
+and scan for available nearby Wi-Fi networks.
+
+Requirement
+
+-   Computer or laptop with Windows or Linux operating system
+-   Working wireless network adapter with its device driver installed
+-   Wi-Fi router or wireless access point (optional)
+
+Theory
+
+A wireless network adapter is a hardware component that allows a
+computer to communicate over a wireless local area network (WLAN). It
+sends and receives radio signals using Wi-Fi standards. Each wireless
+network generally advertises a Service Set Identifier (SSID), which is
+its network name. When Wi-Fi scanning is performed, the operating system
+detects nearby access points and displays details such as SSID, signal
+strength and security type. Identifying the installed adapter and
+checking whether it is enabled helps confirm that the computer has
+wireless networking capability.
+
+Procedure
+
+1.  Switch on the computer or laptop and sign in to the operating
+    system.
+2.  Ensure that the wireless network adapter is enabled.
+3.  Open the operating system’s Network Settings.
+4.  Navigate to the Wi-Fi or Wireless Networks section.
+5.  Turn on Wi-Fi if it is disabled.
+6.  Open the list of available wireless networks and allow the system to
+    scan.
+7.  Observe the SSID, signal strength and security information of the
+    detected networks.
+8.  Open Device Manager in Windows, or the equivalent hardware/network
+    utility in Linux, and expand Network Adapters.
+9.  Identify and note the installed wireless adapter model and its
+    status.
+
+Result
+
+The wireless network adapter and available nearby wireless networks were
+successfully identified and observed.
+
+Conclusion
+
+The wireless adapter was identified and a scan of nearby Wi-Fi networks
+was performed. This demonstrated how a host computer detects wireless
+networks and displays their basic connection details.

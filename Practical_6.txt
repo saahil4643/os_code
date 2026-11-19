@@ -1,0 +1,66 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 6
+
+Aim
+
+To study and implement representative Bus, Star, Ring, Mesh and Tree
+network arrangements using Cisco Packet Tracer.
+
+Requirement
+
+-   Computer or laptop with Cisco Packet Tracer
+-   PCs, switches and hubs
+-   Copper straight-through cables and other suitable links
+
+Theory
+
+Network topology describes the physical or logical arrangement of
+devices and communication links in a network. In a bus topology, devices
+share a common communication medium. In a star topology, each device
+connects to a central hub or switch. In a ring topology, devices or
+switches are connected in a closed loop. In a mesh topology, devices
+have multiple interconnections that can provide alternative paths. In a
+tree topology, devices are arranged hierarchically in parent-child
+levels. Each topology has different characteristics in terms of
+structure, expansion and redundancy. Packet Tracer provides a way to
+create and observe representative arrangements; its hub-based bus
+demonstration is a simplified shared-medium model.
+
+Procedure
+
+A. Bus topology 1. Place a hub and multiple PCs in the workspace. 2.
+Connect each PC to the hub using Ethernet cables to demonstrate a
+shared-medium, hub-based arrangement. 3. Assign unique IP addresses in
+the same subnet. 4. Perform a ping test between PCs.
+
+B. Star topology 5. Place one central switch and four or more PCs. 6.
+Connect each PC individually to the central switch. 7. Assign IP
+addresses in the same subnet. 8. Test connectivity using ping.
+
+C. Ring topology 9. Place multiple switches in a circular arrangement.
+10. Connect each switch to the next, then connect the last switch back
+to the first. 11. Connect PCs to the switches and assign IP addresses.
+12. Observe link status and spanning-tree behaviour; test connectivity.
+
+D. Mesh topology 13. Place four switches and interconnect them with
+multiple links to provide redundant paths. 14. Connect PCs to the
+switches and assign IP addresses. 15. Observe the alternative paths and
+test connectivity. 16. Use spanning-tree status where supported to
+understand loop prevention.
+
+E. Tree topology 17. Place one main switch and two or more secondary
+switches. 18. Connect the secondary switches to the main switch in a
+hierarchical structure. 19. Connect multiple PCs to each secondary
+switch. 20. Assign unique IP addresses and test connectivity.
+
+Result
+
+Bus-style shared-medium, Star, Ring, Mesh and Tree arrangements were
+studied and implemented as supported by Packet Tracer.
+
+Conclusion
+
+The five network topologies were studied and compared by their structure
+and connectivity. The practical demonstrated centralised, circular,
+redundant and hierarchical arrangements. Spanning Tree Protocol may
+block redundant links in switched rings and meshes to prevent Layer 2
+loops.

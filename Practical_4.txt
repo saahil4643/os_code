@@ -1,0 +1,54 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 4
+
+Aim
+
+To establish communication between two different IP networks through a
+router.
+
+Requirement
+
+-   Computer or laptop with Cisco Packet Tracer
+-   One router, two switches and two PCs
+-   Copper straight-through cables
+
+Theory
+
+A router connects different IP networks and forwards packets between
+them. Each router interface is configured with an IP address belonging
+to the network connected to that interface. In this setup, one router
+connects two LANs, each containing a switch and a PC. The PCs use their
+respective router interface addresses as default gateways. When a PC
+sends data to an address outside its local subnet, it forwards the
+packet to its default gateway. The router then forwards the packet
+through the interface connected to the destination network.
+
+Procedure
+
+1.  Place one router, two switches and two PCs in the Packet Tracer
+    workspace.
+2.  Connect PC0 to Switch0 and Switch0 to Router0 GigabitEthernet 0/0.
+3.  Connect Router0 GigabitEthernet 0/1 to Switch1 and connect Switch1
+    to PC1.
+4.  Configure PC0 with IP address 192.168.1.2, subnet mask 255.255.255.0
+    and default gateway 192.168.1.1.
+5.  Configure PC1 with IP address 192.168.2.2, subnet mask 255.255.255.0
+    and default gateway 192.168.2.1.
+6.  On the router, enter enable and configure terminal.
+7.  Configure GigabitEthernet 0/0 with ip address 192.168.1.1
+    255.255.255.0, then enter no shutdown.
+8.  Configure GigabitEthernet 0/1 with ip address 192.168.2.1
+    255.255.255.0, then enter no shutdown.
+9.  Verify that both router interfaces are up using show ip interface
+    brief.
+10. From PC0, run ping 192.168.2.2.
+
+Result
+
+The two different IP networks were connected through the router, and
+end-to-end communication was verified using ping.
+
+Conclusion
+
+The router successfully connected two separate IP networks through its
+interfaces. Configuring the correct IP addresses and default gateways
+enabled the PCs to communicate across the networks.

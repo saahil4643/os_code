@@ -1,0 +1,52 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 9
+
+Aim
+
+To design and configure a wireless LAN using a wireless router and
+wireless-enabled end devices.
+
+Requirement
+
+-   Computer or laptop with Cisco Packet Tracer
+-   Wireless router
+-   Two or more wireless-enabled laptops or PCs
+-   Wireless network adapter where required
+
+Theory
+
+A Wireless Local Area Network (WLAN) connects devices using radio waves
+instead of wired Ethernet links. A wireless router or access point
+advertises a network name called the Service Set Identifier (SSID).
+Wireless clients scan for available SSIDs and associate with the
+selected network. A security mode such as WPA2-PSK helps protect access
+by requiring a password. After connecting, clients need valid IP
+configuration, which may be assigned automatically by DHCP or entered
+manually. Devices on the same wireless subnet can then exchange data,
+and ping can be used to test connectivity.
+
+Procedure
+
+1.  Place a wireless router and two or more wireless-enabled laptops in
+    the Packet Tracer workspace.
+2.  Open the wireless router’s GUI or Config tab.
+3.  Set the SSID (network name), for example College_WiFi.
+4.  Select a supported security mode such as WPA2-PSK and set a strong
+    password.
+5.  Save or apply the wireless settings.
+6.  On each laptop, open its wireless configuration utility and scan for
+    networks.
+7.  Select College_WiFi and enter the configured password.
+8.  Set each laptop to obtain its IP address automatically through DHCP,
+    or configure valid static addresses in the same subnet.
+9.  Verify IP configuration and ping between wireless clients.
+
+Result
+
+The wireless network was established successfully, and communication
+between connected wireless devices was verified.
+
+Conclusion
+
+A WLAN was configured using a wireless router, an SSID and security
+settings. The client devices connected to the wireless network and their
+communication was tested.

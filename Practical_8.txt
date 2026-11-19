@@ -1,0 +1,74 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 8
+
+Aim
+
+To configure Dynamic Host Configuration Protocol (DHCP) so that computers
+connected through multiple switches automatically receive IP configuration.
+
+Requirement
+
+-   Computer or laptop with Cisco Packet Tracer
+-   One router configured as a DHCP server (or dedicated server)
+-   Two switches and four or more PCs
+-   Ethernet straight-through cables
+
+Theory
+
+Dynamic Host Configuration Protocol (DHCP) is a network management
+protocol used to dynamically assign IP addresses and other network
+parameters (such as subnet mask, default gateway, and DNS servers) to
+devices on an IP network. Instead of manually configuring static IP
+addresses on every client machine, a DHCP server manages a pool of IP
+addresses and leases them to clients automatically when they join the
+network. When multiple switches are connected in the same Layer 2 switched
+LAN or VLAN, clients attached to any switch can broadcast DHCP discover
+requests and successfully receive their IP configuration from the centralized
+DHCP service.
+
+Procedure
+
+1.  Place one router, two switches (Switch0 and Switch1), and at least
+    four PCs in the Packet Tracer workspace.
+2.  Connect the router's GigabitEthernet0/0 interface to Switch0.
+3.  Connect Switch0 to Switch1 using an Ethernet cable.
+4.  Connect two PCs to Switch0 and the other two PCs to Switch1.
+5.  Open the router CLI, enter privileged mode using enable, and enter
+    global configuration mode using configure terminal.
+6.  Configure the LAN interface:
+    interface GigabitEthernet 0/0
+    ip address 192.168.1.1 255.255.255.0
+    no shutdown
+    exit
+7.  Exclude reserved addresses for network infrastructure:
+    ip dhcp excluded-address 192.168.1.1 192.168.1.10
+8.  Create and configure the DHCP pool:
+    ip dhcp pool NETWORK
+    network 192.168.1.0 255.255.255.0
+    default-router 192.168.1.1
+    dns-server 8.8.8.8
+    exit
+    end
+9.  On each PC, open Desktop > IP Configuration and select the DHCP radio
+    button.
+10. Confirm that an IP address, subnet mask, and default gateway are
+    automatically assigned from the pool.
+11. Open Command Prompt on the PCs and run ipconfig to verify the assigned
+    settings.
+12. Ping between PCs connected across different switches and ping the router
+    gateway (192.168.1.1) to verify complete network connectivity.
+13. On the router, verify active leases using show ip dhcp binding and
+    show ip dhcp pool.
+
+Result
+
+The DHCP service was configured on the router, and client PCs connected
+through multiple switches automatically and successfully obtained their IP
+configurations.
+
+Conclusion
+
+Dynamic Host Configuration Protocol (DHCP) was successfully implemented
+across multiple interconnected switches. Client computers dynamically
+received their IP addresses, subnet masks, and default gateways, and
+inter-device communication was verified using ping.
+

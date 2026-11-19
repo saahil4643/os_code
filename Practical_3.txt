@@ -1,0 +1,58 @@
+NETWORKING FUNDAMENTALS – PRACTICAL 3
+
+Aim
+
+To configure static routes on routers so that devices in different IP
+networks can communicate.
+
+Requirement
+
+-   Computer or laptop with Cisco Packet Tracer
+-   Two routers and two switches
+-   At least two PCs
+-   Ethernet cables and a suitable router-to-router link (Ethernet or
+    serial)
+
+Theory
+
+Static routing is a method in which an administrator manually adds
+routes to a router’s routing table. A static route specifies the
+destination network, subnet mask and next-hop address (or exit
+interface). When a router receives a packet for a remote network, it
+checks its routing table to determine where to forward it. In this
+practical, two routers connect two separate LANs. Each router needs a
+route to the LAN behind the other router so that packets can travel in
+both directions. Correct interface addressing, enabled interfaces and
+return routes are necessary for end-to-end communication.
+
+Procedure
+
+1.  Create the topology: PC0–Switch0–Router0–Router1–Switch1–PC1.
+2.  Connect the PCs to their local switches and each switch to its
+    router.
+3.  Connect Router0 and Router1 using an Ethernet link. The example uses
+    GigabitEthernet 0/1 on each router.
+4.  Configure PC0 as 192.168.1.2/24 with default gateway 192.168.1.1.
+5.  Configure PC1 as 192.168.2.2/24 with default gateway 192.168.2.1.
+6.  On Router0, configure GigabitEthernet 0/0 as 192.168.1.1/24 and
+    GigabitEthernet 0/1 as 10.0.0.1/30. Enable both interfaces using no
+    shutdown. Add the route: ip route 192.168.2.0 255.255.255.0 10.0.0.2
+7.  On Router1, configure GigabitEthernet 0/0 as 192.168.2.1/24 and
+    GigabitEthernet 0/1 as 10.0.0.2/30. Enable both interfaces using no
+    shutdown. Add the return route: ip route 192.168.1.0 255.255.255.0
+    10.0.0.1
+8.  Save the configurations using copy running-config startup-config.
+9.  Verify interfaces with show ip interface brief and routes with show
+    ip route.
+10. From PC0, run ping 192.168.2.2 to test end-to-end connectivity.
+
+Result
+
+Static routes were configured on both routers, and communication between
+the two different LANs was verified using ping.
+
+Conclusion
+
+Static routing provided paths between the two remote LANs. The practical
+demonstrated that both forward and return routes are required for
+successful communication between different IP networks.
